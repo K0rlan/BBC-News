@@ -1,28 +1,42 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-  <a class="navbar-brand" href="">BBC NEWS</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav ml-auto">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light">
+  <a class="navbar-brand" href="#">BBC NEWS</a>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home</a>
+      <li class="nav-item dropdown">
       <li class="nav-item">
-        <a class="nav-link" routerLink="politics">Politics</a>
+        <a class="nav-link" routerLink="sport">Sport</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">Categories
+        </a>
+        <div class="dropdown-menu dropdown-default">
+          <a class="dropdown-item" routerLink="politics">Politics</a>
+          <a class="dropdown-item" routerLink="sport">Sport</a>
+          <a class="dropdown-item" routerLink="science">Science</a>
+          <a class="dropdown-item" routerLink="culture">Culture</a>
+          <a class="dropdown-item" routerLink="response">Response</a>
+          <a class="dropdown-item" routerLink="finance">Finance</a>
+        </div>
       </li>
+    </ul>
+    <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item">
-<!--        <a class="nav-link active" href="/app-root">Sport</a>-->
-        <a class="nav-link active" routerLink="sport">Sport</a>
+        <a class="nav-link">
+          {{dateNow | date}}
+        </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="science">Science</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="culture">Culture</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="response">Response</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="finance">Finance</a>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-default"
+             aria-labelledby="navbarDropdownMenuLink-3333">
+          <a class="dropdown-item" href="#">Logout</a>
+          <a class="dropdown-item" href="#">Favourites</a>
+        </div>
       </li>
     </ul>
   </div>

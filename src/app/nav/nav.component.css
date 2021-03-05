@@ -10,10 +10,12 @@
 .nav-link:active{
   color: #ffffff !important;
 }
-
 .nav-link{
-  color: #93123a;
+  color: #ffffff!important;
 }
 .nav-link:hover{
+  color: #ffffff !important;
+}
+.a {
   color: #ffffff !important;
 }

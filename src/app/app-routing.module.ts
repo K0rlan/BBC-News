@@ -6,6 +6,7 @@ import {ScienceComponent} from './science/science.component';
 import {CultureComponent} from './culture/culture.component';
 import {ResponseComponent} from './response/response.component';
 import {FinanceComponent} from './finance/finance.component';
+import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
   {path: 'sport', component: SportComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'culture', component: CultureComponent},
   {path: 'response', component: ResponseComponent},
   {path: 'finance', component: FinanceComponent},
-  {path: '', redirectTo: 'sport', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 
 @NgModule({
