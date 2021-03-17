@@ -1,13 +1,16 @@
 .intro-2 {
-  background: url("src/assets/home.jpeg")no-repeat center center;
+  background: url("src/assets/main.jpg") no-repeat center center;
   background-size: cover;
 }
-.card, card-img-top{
+
+.cardButton {
   height: 200px;
 }
-#info{
-  background-color: antiquewhite;
+
+#info {
+  background-color: lightgray;
 }
+
 .gallery {
   -webkit-column-count: 3;
   -moz-column-count: 3;
@@ -16,10 +19,12 @@
   -moz-column-width: 33%;
   column-width: 33%;
 }
+
 .gallery .pics {
   -webkit-transition: all 350ms ease;
   transition: all 350ms ease;
 }
+
 .gallery .animation {
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
@@ -43,10 +48,22 @@
     padding-right: 1.1rem;
   }
 }
+
 button.close {
   position: absolute;
   right: 0;
   z-index: 2;
   padding-right: 1rem;
   padding-top: .6rem;
+}
+.text {
+  color: white;
+  font-size: 25px;
+  position: absolute;
+  top: 90%;
+  left: 20%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }

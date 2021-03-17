@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { NewNewsLayoutComponent } from './new-news-layout.component';
+import {NewNewsLayoutComponent} from './new-news-layout.component';
 
 describe('NewNewsLayoutComponent', () => {
   let component: NewNewsLayoutComponent;
@@ -8,9 +8,9 @@ describe('NewNewsLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewNewsLayoutComponent ]
+      declarations: [NewNewsLayoutComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

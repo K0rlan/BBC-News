@@ -1,0 +1,15 @@
+<div class="row">
+<div class="card hoverable" style="width: 19rem;">
+  <img src="{{list.img}}" class="card-img-top" alt="Card image cap" height="200px;">
+  <div class="card-body">
+    <h5 class="card-title">{{list.name}}</h5>
+    <p class="card-text"> {{list.more}}</p>
+    <p class="card-text"><small class="text-muted">Last updated on {{today  |  date:'mediumDate'}}</small></p>
+    <div class="like">
+    <div class="card-button" style="display: inline">
+    <p>
+      <button class="like-button" mdbPopover="Liked!" (click)="addLike()"></button>
+      <span style="font-size: 18px;">{{list.likes | likeConverter}}</span></p></div></div>
+  </div>
+</div>
+</div>

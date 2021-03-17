@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { JumbotronComponent } from './jumbotron.component';
+import {JumbotronComponent} from './jumbotron.component';
 
 describe('JumbotronComponent', () => {
   let component: JumbotronComponent;
@@ -8,9 +8,9 @@ describe('JumbotronComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ JumbotronComponent ]
+      declarations: [JumbotronComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

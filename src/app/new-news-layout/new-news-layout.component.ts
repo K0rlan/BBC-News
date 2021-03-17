@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-new-news-layout',
@@ -7,16 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewNewsLayoutComponent implements OnInit {
 
-  items = [];
+  items = ['Lorem ipsum', 'Lorem ipsum', 'Lorem ipsum'];
   item: string;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
   // tslint:disable-next-line:typedef
-  addingItem(newitem: string){
+  addingItem(newitem: string) {
     this.items.unshift(newitem);
   }
 

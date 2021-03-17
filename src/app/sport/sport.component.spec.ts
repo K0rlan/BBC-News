@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SportComponent } from './sport.component';
+import {SportComponent} from './sport.component';
 
 describe('SportComponent', () => {
   let component: SportComponent;
@@ -8,9 +8,9 @@ describe('SportComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SportComponent ]
+      declarations: [SportComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

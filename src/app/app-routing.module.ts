@@ -1,21 +1,24 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {SportComponent} from './sport/sport.component';
 import {PoliticsComponent} from './politics/politics.component';
 import {ScienceComponent} from './science/science.component';
-import {CultureComponent} from './culture/culture.component';
-import {ResponseComponent} from './response/response.component';
-import {FinanceComponent} from './finance/finance.component';
+import {CultureComponent} from './others/culture/culture.component';
+import {ResponseComponent} from './others/response/response.component';
+import {FinanceComponent} from './others/finance/finance.component';
 import {HomeComponent} from './home/home.component';
+import {AddNewsComponent} from './new-news-layout/add-news/add-news.component';
+import {NewNewsComponent} from './new-news-layout/new-news/new-news.component';
+import {NewNewsLayoutComponent} from './new-news-layout/new-news-layout.component';
+import {NewsCatalogComponent} from './news-catalog/news-catalog.component';
 
 const routes: Routes = [
   {path: 'sport', component: SportComponent},
   {path: 'politics', component: PoliticsComponent},
   {path: 'science', component: ScienceComponent},
-  {path: 'culture', component: CultureComponent},
-  {path: 'response', component: ResponseComponent},
-  {path: 'finance', component: FinanceComponent},
   {path: 'home', component: HomeComponent},
+  {path: 'new', component: NewNewsLayoutComponent},
+  {path: 'add', component: NewsCatalogComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 
@@ -23,4 +26,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -1,21 +1,27 @@
-.navbar{
+.navbar {
   background-color: #55081a;
 }
-.navbar-brand{
+
+.navbar-brand {
   color: #ffffff !important;
 }
-.nav-link:visited{
+
+.nav-link:visited {
   color: #ffffff !important;
 }
-.nav-link:active{
+
+.nav-link:active {
   color: #ffffff !important;
 }
-.nav-link{
-  color: #ffffff!important;
-}
-.nav-link:hover{
+
+.nav-link {
   color: #ffffff !important;
 }
+
+.nav-link:hover {
+  color: #ffffff !important;
+}
+
 .a {
   color: #ffffff !important;
 }
