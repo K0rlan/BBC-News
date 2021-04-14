@@ -1,11 +1,19 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges, DoCheck} from '@angular/core';
+import {Observable} from 'rxjs';
+import {ComponentCanDeactivate} from '../exit.order.guard';
 
 @Component({
   selector: 'app-news-catalog',
   templateUrl: './news-catalog.component.html',
   styleUrls: ['./news-catalog.component.css']
 })
-export class NewsCatalogComponent implements OnInit {
+export class NewsCatalogComponent implements OnInit, ComponentCanDeactivate {
+
+  saved = false;
+  // tslint:disable-next-line:typedef
+  save(){
+    this.saved = true;
+  }
 
   list: any;
 
@@ -61,5 +69,12 @@ export class NewsCatalogComponent implements OnInit {
   }
 
   ngDoCheck(): void {
+  }
+  canDeactivate(): boolean | Observable<boolean> {
+    if (!this.saved){
+      return confirm('You didn\'t added new news. Leave the page?');
+    }else{
+      return true;
+    }
   }
 }

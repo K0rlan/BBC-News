@@ -11,6 +11,9 @@ import {AddNewsComponent} from './new-news-layout/add-news/add-news.component';
 import {NewNewsComponent} from './new-news-layout/new-news/new-news.component';
 import {NewNewsLayoutComponent} from './new-news-layout/new-news-layout.component';
 import {NewsCatalogComponent} from './news-catalog/news-catalog.component';
+import {LoginComponent} from './login/login.component';
+import {ExitOrderGuard} from './exit.order.guard';
+import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
   {path: 'sport', component: SportComponent},
@@ -18,7 +21,9 @@ const routes: Routes = [
   {path: 'science', component: ScienceComponent},
   {path: 'home', component: HomeComponent},
   {path: 'new', component: NewNewsLayoutComponent},
-  {path: 'add', component: NewsCatalogComponent},
+  {path: 'add', component: NewsCatalogComponent, canDeactivate: [ExitOrderGuard]},
+  {path: 'register', component: RegisterComponent, canDeactivate: [ExitOrderGuard]},
+  {path: 'login', component: LoginComponent, canDeactivate: [ExitOrderGuard]},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 

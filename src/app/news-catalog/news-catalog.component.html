@@ -5,5 +5,5 @@
   <div class="row row-cols-md-3 g-3">
     <app-new-list *ngFor="let list of list" [list]="list" ></app-new-list>
   </div>
-  <app-add-new (newItemEvent)="addItem($event)"> </app-add-new>
+  <app-add-new (newItemEvent)="addItem($event)" (click)="save"> </app-add-new>
 </div>

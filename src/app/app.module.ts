@@ -31,6 +31,11 @@ import { AddNewComponent } from './news-catalog/add-new/add-new.component';
 import { NewListComponent } from './news-catalog/new-list/new-list.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {LikeModulePipe} from './news-catalog/new-list/LikeModule.pipe';
+import { LoginComponent } from './login/login.component';
+import {ExitOrderGuard} from './exit.order.guard';
+import {AuthService} from './services/auth.service';
+import {AuthClass} from './auth.guard';
+import {ErrorComponent} from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +62,8 @@ import {LikeModulePipe} from './news-catalog/new-list/LikeModule.pipe';
     AddNewComponent,
     NewListComponent,
     LikeModulePipe,
-
+    LoginComponent,
+    ErrorComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +73,9 @@ import {LikeModulePipe} from './news-catalog/new-list/LikeModule.pipe';
     Ng2SearchPipeModule,
     NgbModule,
   ],
-  providers: [],
+  providers: [ExitOrderGuard,
+    AuthService,
+    AuthClass],
   bootstrap: [AppComponent]
 })
 export class AppModule {
