@@ -1,0 +1,20 @@
+<div class=" intro-2">
+  <!--  <div class="overlay zoom">-->
+  <div class="full-bg-img mask rgba-black-light flex-center">
+    <div class="container text-center white-text wow fadeInUp" style="height: 500px">
+<!--      <h2>This Navbar is fixed</h2>-->
+    </div>
+  </div>
+  <!--  </div>-->
+</div>
+<div class="container mt-5">
+  <div class="row form-inline d-flex justify-content-center">
+    <div class="form-group col-10">
+      <input class="form-control col-12" type="text" placeholder="Search Pet"  name="item" [(ngModel)]="searchText">
+<!--      <button (click)="search(searchText)">search</button>-->
+    </div>
+  </div>
+</div>
+<!--<app-news [searchText]="searchText"></app-news>-->
+<!--<app-news></app-news>-->
+<router-outlet></router-outlet>
