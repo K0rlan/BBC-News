@@ -20,12 +20,11 @@ class Breed {
 // tslint:disable-next-line:max-line-length
 export class CategoriesComponent implements OnInit, DoCheck {
 
-  listOfBreed: News[];
   pet: News;
   searchText: string;
   user: User;
 
-  constructor(private breedService: NewsService, private accountService: AuthService) {
+  constructor(private newsService: NewsService, private accountService: AuthService) {
     this.user = this.accountService.userValue[0];
   }
 
@@ -37,11 +36,11 @@ export class CategoriesComponent implements OnInit, DoCheck {
   // tslint:disable-next-line:typedef
   ngDoCheck() {
     console.log('CategoryComponent:DoCheck');
-    this.breedService.setSearchText(this.searchText);
+    this.newsService.setSearchText(this.searchText);
   }
 
   // tslint:disable-next-line:typedef
   search(searchText: string) {
-    this.breedService.setSearchText(searchText);
+    this.newsService.setSearchText(searchText);
   }
 }

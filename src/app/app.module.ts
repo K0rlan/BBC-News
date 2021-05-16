@@ -24,6 +24,9 @@ import {FavoriteListComponent} from './all/favorite-list/favorite-list.component
 import { CatalogComponent } from './all/catalog/catalog.component';
 import {CategoriesModule} from './all/categories/categories.module';
 import {OrderComponent} from './all/order/order.component';
+import {NewsCatalogComponent} from './all/news-catalog/news-catalog.component';
+import {AddNewComponent} from './all/news-catalog/add-new/add-new.component';
+import {NewListComponent} from './all/news-catalog/new-list/new-list.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import {OrderComponent} from './all/order/order.component';
     NewsDetailComponent,
     FavoriteListComponent,
     CatalogComponent,
-    OrderComponent
+    OrderComponent,
+    NewsCatalogComponent,
+    AddNewComponent,
+    NewListComponent
   ],
   imports: [
     BrowserModule,

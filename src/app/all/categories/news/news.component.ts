@@ -28,7 +28,7 @@ export class NewsComponent implements OnInit, OnChanges, DoCheck, AfterViewCheck
   private subscription: Subscription;
 
   constructor(private newsService: NewsService, private activateRoute: ActivatedRoute, private accountService: AuthService) {
-    this.subscription = activateRoute.params.subscribe(params => this.newsId = params['id']);
+    this.subscription = activateRoute.params.subscribe(params => this.newsId = params.id);
     this.user = this.accountService.userValue[0];
   }
 

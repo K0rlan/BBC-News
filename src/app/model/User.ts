@@ -5,6 +5,7 @@ export class User{
   name: string;
   email: string;
   password: string;
+  role: string;
   favList: News[];
 
   constructor(id: number, name: string, email: string, password: string) {
@@ -12,6 +13,7 @@ export class User{
     this.name = name;
     this.email = email;
     this.password = password;
+    this.role = 'user';
     this.favList = [];
   }
 }

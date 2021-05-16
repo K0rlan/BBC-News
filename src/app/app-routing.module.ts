@@ -9,18 +9,20 @@ import {ErrorComponent} from './error/error.component';
 import {FavoriteListComponent} from './all/favorite-list/favorite-list.component';
 import {CatalogComponent} from './all/catalog/catalog.component';
 import {OrderComponent} from './all/order/order.component';
+import {NewsCatalogComponent} from './all/news-catalog/news-catalog.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'register', component: RegisterComponent, canDeactivate: [ExitOrderGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'catalog', component: CatalogComponent},
+  {path: 'catalog', component: NewsCatalogComponent},
   {path: 'catalog/order', component: OrderComponent, canActivate: [AuthClass]},
   {path: 'favourites', component: FavoriteListComponent, canActivate: [AuthClass]},
   {path: 'categories/:id', canActivate: [AuthClass], loadChildren: () => import('./all/categories/categories.module')
       .then(allModule => allModule.CategoriesModule)},
   {path: 'catalog/categories/:id', canActivate: [AuthClass], loadChildren: () => import('./all/categories/categories.module')
       .then(allModule => allModule.CategoriesModule)},
+  {path: 'add', component: CatalogComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: '**', component: ErrorComponent}
 ];

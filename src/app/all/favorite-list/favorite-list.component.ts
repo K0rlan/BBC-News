@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {NewsService} from '../../services/news.service';
 import {first} from 'rxjs/operators';
 import {User} from '../../model/User';
-import {News} from '../../model/News';
+import {Liked, News} from '../../model/News';
 import {LoggingService} from '../../services/logging.service';
 
 @Component({
@@ -22,27 +22,9 @@ export class FavoriteListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  changeLike(news: News): any{
-    news.favStatus = !news.favStatus;
-    console.log(news.favStatus);
-    // tslint:disable-next-line:prefer-for-of
-    if (news.favStatus === true){
-      this.user.favList.push(news);
-      this.newsService.updatePet(news).subscribe(data => console.log(data), error => console.log(error));
-      this.accountService.update(this.user)
-        .pipe(first())
-        .subscribe(
-          data => {
-            console.log(data);
-          },
-          error => {
-            alert('error');
-          });
-    }else{
-      this.user.favList = this.user.favList.filter(item => item !== news);
-      this.newsService.updatePet(news).subscribe(data => console.log(data), error => console.log(error));
-      this.accountService.update(this.user).subscribe(data => console.log(data), error => console.log(error));
-      console.log(this.user);
-    }
+  changeFav(news: News): any {
+    this.user.favList = this.user.favList.filter(item => item !== news);
+    this.newsService.updatePet(news).subscribe(data => console.log(data), error => console.log(error));
+    this.accountService.update(this.user).subscribe(data => console.log(data), error => console.log(error));
   }
 }

@@ -1,28 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
 import {first} from 'rxjs/operators';
 import {User} from '../../model/User';
-import {News} from '../../model/News';
+import {Comments, Liked, News} from '../../model/News';
 import {NewsService} from '../../services/news.service';
 import {LoggingService} from '../../services/logging.service';
+import {DatePipe} from '@angular/common';
 
 
 @Component({
   selector: 'app-pet-detail',
   templateUrl: './news-detail.component.html',
   styleUrls: ['./news-detail.component.css'],
-  providers: [NewsService, LoggingService]
+  providers: [NewsService, LoggingService, DatePipe]
 })
 export class NewsDetailComponent implements OnInit {
   num: number;
   private subscription: Subscription;
   user: User;
   news: News;
+  liked: Liked;
+  favStatus = false;
+  hideComment = true;
+  hideBTN = false;
 
   constructor(private newsService: NewsService, private activateRoute: ActivatedRoute,
-              private accountService: AuthService, private router: Router) {
+              private accountService: AuthService, private router: Router, public datepipe: DatePipe) {
     this.subscription = activateRoute.params.subscribe(params => this.num = params.id);
     this.user = this.accountService.userValue[0];
   }
@@ -35,7 +40,7 @@ export class NewsDetailComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  getBreedById(id: number){
+  getBreedById(id: number) {
     this.newsService.getBreedById(id).subscribe(data => {
       console.log(data);
       this.news = data;
@@ -44,19 +49,70 @@ export class NewsDetailComponent implements OnInit {
     });
   }
 
-  changeLike(): any{
-    this.news.favStatus = !this.news.favStatus;
-    console.log(this.news.favStatus);
-    // tslint:disable-next-line:prefer-for-of
-    if (this.news.favStatus === true){
-      for (const test of this.user.favList){
-        if (test === this.news){
-          console.log('I AM TUT');
-          console.log(test);
-        }else{
-          console.log('I AM  NOT TUT');
-        }
+  // tslint:disable-next-line:typedef
+  changeCommentVissiblity() {
+    this.hideBTN = !this.hideBTN;
+    this.hideComment = !this.hideComment;
+  }
+
+  // tslint:disable-next-line:typedef
+  getUserLiked() {
+    for (const liked of this.news.liked) {
+      if (liked.likedUser === this.user.email && liked.likeStatus) {
+        return true;
       }
+    }
+    return false;
+  }
+
+  // tslint:disable-next-line:typedef
+  getFavStatus() {
+    for (const fav of this.user.favList) {
+      if (fav.id === this.news.id) {
+        this.favStatus = true;
+        return true;
+      }
+    }
+    return false;
+  }
+
+  // tslint:disable-next-line:typedef
+  formatDate(date) {
+    // tslint:disable-next-line:one-variable-per-declaration prefer-const
+    let d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      // tslint:disable-next-line:prefer-const
+      year = d.getFullYear();
+
+    if (month.length < 2) {
+      month = '0' + month;
+    }
+    if (day.length < 2) {
+      day = '0' + day;
+    }
+    return [year, month, day].join('-');
+  }
+
+  // tslint:disable-next-line:typedef
+  addComment(commentText: string) {
+    const comment = new Comments();
+    comment.commentText = commentText;
+    comment.userName = this.user.name;
+    comment.userEmail = this.user.email;
+    const koko = new Date();
+    comment.date = (koko.getDate() + '.' + koko.getMonth() + '.' + koko.getFullYear()
+      + ' ' + koko.getHours() + ':' + koko.getMinutes());
+    this.news.comments.push(comment);
+    this.accountService.update(this.user).subscribe(data => console.log(data.favList), error => console.log(error));
+    this.newsService.updatePet(this.news).subscribe(data => console.log(data.name), error => console.log(error));
+    this.changeCommentVissiblity();
+  }
+
+  changeFav(): any {
+    this.favStatus = !this.favStatus;
+    // tslint:disable-next-line:prefer-for-of
+    if (this.favStatus === true) {
       this.user.favList.push(this.news);
       this.newsService.updatePet(this.news).subscribe(data => console.log(data), error => console.log(error));
       this.accountService.update(this.user)
@@ -68,22 +124,38 @@ export class NewsDetailComponent implements OnInit {
           error => {
             alert('error');
           });
-    }else {
-      for (const test of this.user.favList){
-        if (test.id === this.news.id){
-          console.log('I AM HERE');
-          console.log(test);
-        }else{
-          console.log('I AM  NOT HERE');
-          console.log(this.news);
-        }
-      }
+    } else {
       this.user.favList = this.user.favList.filter(item => item.id !== this.news.id);
       this.accountService.update(this.user).subscribe(data => console.log(data.favList), error => console.log(error));
-      console.log('CHECKAI');
-      console.log(this.user.favList);
       this.newsService.updatePet(this.news).subscribe(data => console.log(data.name), error => console.log(error));
-      console.log(this.user);
+    }
+  }
+
+  changeLike(): any {
+    for (const liked of this.news.liked) {
+      if (this.user.email === liked.likedUser) {
+        this.liked = liked;
+      }
+    }
+    if (this.liked === undefined) {
+      this.liked = new Liked();
+    }
+    console.log(this.liked);
+    this.liked.likeStatus = !this.liked.likeStatus;
+    // tslint:disable-next-line:prefer-for-of
+    if (this.liked.likeStatus === true) {
+      this.news.likes = this.news.likes + 1;
+      this.liked.likedUser = this.user.email;
+      this.news.liked.push(this.liked);
+      this.accountService.update(this.user).subscribe(data => console.log(data.favList), error => console.log(error));
+      this.newsService.updatePet(this.news).subscribe(data => console.log(data.name), error => console.log(error));
+    } else {
+      this.news.likes = this.news.likes - 1;
+      this.liked.likedUser = '';
+      this.news.liked = this.news.liked.filter(item => item.likedUser !== this.liked.likedUser);
+      this.user.favList = this.user.favList.filter(item => item.id !== this.news.id);
+      this.accountService.update(this.user).subscribe(data => console.log(data.favList), error => console.log(error));
+      this.newsService.updatePet(this.news).subscribe(data => console.log(data.name), error => console.log(error));
     }
   }
 }
