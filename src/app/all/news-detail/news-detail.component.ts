@@ -153,7 +153,6 @@ export class NewsDetailComponent implements OnInit {
       this.news.likes = this.news.likes - 1;
       this.liked.likedUser = '';
       this.news.liked = this.news.liked.filter(item => item.likedUser !== this.liked.likedUser);
-      this.user.favList = this.user.favList.filter(item => item.id !== this.news.id);
       this.accountService.update(this.user).subscribe(data => console.log(data.favList), error => console.log(error));
       this.newsService.updatePet(this.news).subscribe(data => console.log(data.name), error => console.log(error));
     }
